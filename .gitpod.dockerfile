@@ -60,7 +60,7 @@ RUN go get github.com/mailhog/MailHog && \
     wget -q https://raw.githubusercontent.com/wp-cli/wp-cli/v2.3.0/utils/wp-completion.bash -O $HOME/wp-cli-completion.bash && \
     chmod +x $HOME/wp-cli.phar && \
     mv $HOME/wp-cli.phar /usr/local/bin/wp && \
-    chown gitpod:gitpod /usr/local/bin/wp
+    chown gitpod:gitpod /usr/local/bin/wp && \
     echo "/usr/lib" | pecl install v8js
 
 ### WordPress, Adminer ###
