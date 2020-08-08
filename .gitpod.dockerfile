@@ -47,6 +47,7 @@ RUN go get github.com/mailhog/MailHog && \
         php${PHP_VERSION}-soap \
         php${PHP_VERSION}-bcmath \
         php${PHP_VERSION}-opcache \
+        libv8-dev \
         php-xdebug && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* && \
     cat /home/gitpod/gitpod-wordpress/conf/php.ini >> /etc/php/${PHP_VERSION}/apache2/php.ini && \
