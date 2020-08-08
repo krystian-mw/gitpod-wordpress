@@ -47,6 +47,7 @@ RUN go get github.com/mailhog/MailHog && \
         php${PHP_VERSION}-soap \
         php${PHP_VERSION}-bcmath \
         php${PHP_VERSION}-opcache \
+        libv8-dev \
         php-xdebug && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* && \
     cat /home/gitpod/gitpod-wordpress/conf/php.ini >> /etc/php/${PHP_VERSION}/apache2/php.ini && \
@@ -60,6 +61,7 @@ RUN go get github.com/mailhog/MailHog && \
     chmod +x $HOME/wp-cli.phar && \
     mv $HOME/wp-cli.phar /usr/local/bin/wp && \
     chown gitpod:gitpod /usr/local/bin/wp
+    echo "/usr/lib" | pecl install v8js
 
 ### WordPress, Adminer ###
 USER gitpod
@@ -71,8 +73,4 @@ RUN wget -q https://wordpress.org/latest.zip -O $HOME/wordpress.zip && \
     wget -q https://www.adminer.org/latest.php -O $HOME/wordpress/database/index.php && \
     mkdir $HOME/wordpress/phpinfo/ && \
     echo "<?php phpinfo(); ?>" > $HOME/wordpress/phpinfo/index.php
-    
-USER root
-RUN apt-get update && \
-      apt-get -y install sudo
-      
+
